@@ -1,13 +1,19 @@
 
 
-var answer = Math.floor((Math.random() * 100) + 1);
-var tries = 0;
-
+init();
 writeHighscore();
-
+var answer;
+var tries;
 function Entry(name, score){  
+    document.getElementById("higherNumber").innerHTML = 100;
+    document.getElementById("lowerNumber").innerHTML = 0;
     this.name = name;
     this.score = score;
+}
+
+function init(){
+    answer = Math.floor((Math.random() * 100) + 1);
+    tries = 0;
 }
 
 function guess(){
@@ -49,7 +55,7 @@ function guess(){
         
         var i = highscore.size - 1;
         
-        while(i >= 0 && tries < highscore[i].score){
+        while(i >= 0 && tries < parseInt(highscore[i].score)){
             i--;
         }
         
@@ -58,10 +64,10 @@ function guess(){
         
         
         
-        prompt("Enter name: ", name);
+        var name = prompt("Enter name: ");
         
         var newEntry = new Entry(name, tries);
-        
+       
         highscore.splice(i, 0, newEntry);
         
         if(highscore.length > 5) highscore.pop();
@@ -85,16 +91,16 @@ function saveLocalStorage(highscore){
     localStorage.setItem("pos5", JSON.stringify(highscore[4]));
     
     writeHighscore();
-    
+    init();
    
 }
 
 function writeHighscore(){
     
-    document.getElementById("pos1").innerHTML = localStorage.getItem("pos1");
-    document.getElementById("pos2").innerHTML = localStorage.getItem("pos2");
-    document.getElementById("pos3").innerHTML = localStorage.getItem("pos3");
-    document.getElementById("pos4").innerHTML = localStorage.getItem("pos4");
-    document.getElementById("pos5").innerHTML = localStorage.getItem("pos5");
+    document.getElementById("pos1").innerHTML = JSON.parse(localStorage.getItem("pos1")).score + " " +  JSON.parse(localStorage.getItem("pos1")).name;
+    document.getElementById("pos2").innerHTML = JSON.parse(localStorage.getItem("pos2")).score + " " +  JSON.parse(localStorage.getItem("pos2")).name;
+    document.getElementById("pos3").innerHTML = JSON.parse(localStorage.getItem("pos3")).score + " " +  JSON.parse(localStorage.getItem("pos3")).name;
+    document.getElementById("pos4").innerHTML = JSON.parse(localStorage.getItem("pos4")).score + " " +  JSON.parse(localStorage.getItem("pos4")).name;
+    document.getElementById("pos5").innerHTML = JSON.parse(localStorage.getItem("pos5")).score + " " +  JSON.parse(localStorage.getItem("pos5")).name;
     
 }
