@@ -1,6 +1,8 @@
 var answer = Math.floor((Math.random() * 100) + 1);
 
-function guess(val){
+function guess(){
+    
+    var val = document.inputBox.value;
     
     if(val < answer){
       
