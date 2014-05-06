@@ -1,25 +1,28 @@
 
 
-init();
-writeHighscore();
 var answer;
 var tries;
+init();
+writeHighscore();
 function Entry(name, score){  
-    document.getElementById("higherNumber").innerHTML = 100;
-    document.getElementById("lowerNumber").innerHTML = 0;
     this.name = name;
     this.score = score;
 }
 
 function init(){
+    document.getElementById("higherNumber").innerHTML = 100;
+    document.getElementById("lowerNumber").innerHTML = 0;
     answer = Math.floor((Math.random() * 100) + 1);
     tries = 0;
+    writeHighscore();
 }
 
 function guess(){
-    
+      
+    console.log(tries);
     tries += 1;
     
+    console.log(tries);
     var val = document.getElementById("inputBox").value;
     
     if(val > answer){
@@ -54,13 +57,18 @@ function guess(){
         highscore[3] = JSON.parse(localStorage.getItem("pos4"));
         highscore[4] = JSON.parse(localStorage.getItem("pos5"));
         
-        var i = highscore.size() - 1;
+        var i = highscore.length - 1;
+        console.log(tries);
+        
+        console.log("size of array is:" + i);
+        console.log(parseInt(highscore[i].score));
         while(i >= 0 && tries < parseInt(highscore[i].score)){
+            console.log("one loop");
             i--;
         }
         
         //not a highscore!
-        if(i == highscore.size() -1) return;
+        if(i == highscore.length -1) return;
         
         
         
@@ -68,7 +76,8 @@ function guess(){
         
         var newEntry = new Entry(name, tries);
        
-        highscore.splice(i, 0, newEntry);
+        console.log("index to insert at:" + i);
+        highscore.splice(i+1, 0, newEntry);
         
         if(highscore.length > 5) highscore.pop();
         
@@ -102,7 +111,6 @@ function writeHighscore(){
     document.getElementById("pos3").innerHTML = JSON.parse(localStorage.getItem("pos3")).score + " " +  JSON.parse(localStorage.getItem("pos3")).name;
     document.getElementById("pos4").innerHTML = JSON.parse(localStorage.getItem("pos4")).score + " " +  JSON.parse(localStorage.getItem("pos4")).name;
     document.getElementById("pos5").innerHTML = JSON.parse(localStorage.getItem("pos5")).score + " " +  JSON.parse(localStorage.getItem("pos5")).name;
-    
 }
 
 function reset(){
@@ -111,5 +119,4 @@ function reset(){
         mArray[i] = new Entry("gert",9999);
     }
     saveLocalStorage(mArray);
-    writeHighscore();
 }

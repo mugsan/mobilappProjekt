@@ -5,6 +5,10 @@ body {
     background:                 black;
 }
 
+body header {
+    color:                      grey;
+}
+
 body section {
     background:                 grey;
     margin:                     20%;
