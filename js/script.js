@@ -47,19 +47,14 @@ function guess(){
         alert("CO-CO-CO-CORRECT!!!!\n");   
         
         var highscore = new Array(); 
-        try {
             
         highscore[0] = JSON.parse(localStorage.getItem("pos1"));
         highscore[1] = JSON.parse(localStorage.getItem("pos2"));
         highscore[2] = JSON.parse(localStorage.getItem("pos3"));
         highscore[3] = JSON.parse(localStorage.getItem("pos4"));
         highscore[4] = JSON.parse(localStorage.getItem("pos5"));
-        } catch (e) {
-            /* handle error */
-        }
         
         var i = highscore.size() - 1;
-        alert(i);
         while(i >= 0 && tries < parseInt(highscore[i].score)){
             i--;
         }
@@ -112,7 +107,7 @@ function writeHighscore(){
 
 function reset(){
     var mArray = new Array();
-    for (var i = 0, len = mArray.length; i < len; i++) {
+    for (var i = 0, len = 5; i < len; i++) {
         mArray[i] = new Entry("gert",9999);
     }
     saveLocalStorage(mArray);
