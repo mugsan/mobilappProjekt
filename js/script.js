@@ -47,20 +47,25 @@ function guess(){
         alert("CO-CO-CO-CORRECT!!!!\n");   
         
         var highscore = new Array(); 
+        try {
+            
         highscore[0] = JSON.parse(localStorage.getItem("pos1"));
         highscore[1] = JSON.parse(localStorage.getItem("pos2"));
         highscore[2] = JSON.parse(localStorage.getItem("pos3"));
         highscore[3] = JSON.parse(localStorage.getItem("pos4"));
         highscore[4] = JSON.parse(localStorage.getItem("pos5"));
+        } catch (e) {
+            /* handle error */
+        }
         
-        var i = highscore.size - 1;
-        
+        var i = highscore.size() - 1;
+        alert(i);
         while(i >= 0 && tries < parseInt(highscore[i].score)){
             i--;
         }
         
         //not a highscore!
-        if(i == highscore.size -1) return;
+        if(i == highscore.size() -1) return;
         
         
         
@@ -103,4 +108,13 @@ function writeHighscore(){
     document.getElementById("pos4").innerHTML = JSON.parse(localStorage.getItem("pos4")).score + " " +  JSON.parse(localStorage.getItem("pos4")).name;
     document.getElementById("pos5").innerHTML = JSON.parse(localStorage.getItem("pos5")).score + " " +  JSON.parse(localStorage.getItem("pos5")).name;
     
+}
+
+function reset(){
+    var mArray = new Array();
+    for (var i = 0, len = mArray.length; i < len; i++) {
+        mArray[i] = new Entry("gert",9999);
+    }
+    saveLocalStorage(mArray);
+    writeHighscore();
 }
