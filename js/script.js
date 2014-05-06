@@ -1,17 +1,28 @@
+
+
 var answer = Math.floor((Math.random() * 100) + 1);
+var tries = 0;
 
 function guess(){
     
-    var val = document.inputBox.value;
+    tries += 1;
     
-    if(val < answer){
+    var val = document.getElementById("inputBox").value;
+    
+    if(val > answer){
       
-      document.write("higher!\n");
+        var highest = document.getElementById("higherNumber").innerHTML;
+        
+        if(val < highest) document.getElementById("higherNumber").innerHTML = val;
+        
     }
 
-    else if(val > answer){
+    else if(val < answer){
+        console.log("hej");
      
-        document.write("lower!\n");
+         var lowest = document.getElementById("lowerNumber").innerHTML;
+        
+         if(val > lowest) document.getElementById("lowerNumber").innerHTML = val;
     }
     
     else {
