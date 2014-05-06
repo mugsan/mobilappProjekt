@@ -10,8 +10,10 @@ function guess(){
     var val = document.getElementById("inputBox").value;
     
     if(val > answer){
-      
-        var highest = document.getElementById("higherNumber").innerHTML;
+        
+        var highest = parseInt(document.getElementById("higherNumber").innerHTML);
+        
+        console.log(highest);
         
         if(val < highest) document.getElementById("higherNumber").innerHTML = val;
         
@@ -19,10 +21,12 @@ function guess(){
 
     else if(val < answer){
         console.log("hej");
-     
-         var lowest = document.getElementById("lowerNumber").innerHTML;
         
-         if(val > lowest) document.getElementById("lowerNumber").innerHTML = val;
+     
+         var lowest = parseInt(document.getElementById("lowerNumber").innerHTML);
+        
+         if(val > lowest) 
+             document.getElementById("lowerNumber").innerHTML = val;
     }
     
     else {
