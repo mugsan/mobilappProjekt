@@ -19,3 +19,6 @@ body section {
 body section article p{
     display:                    inline;
 }
+footer p{
+    background:                 grey;
+}
