@@ -3,7 +3,7 @@
 var answer;
 var tries;
 init();
-writeHighscore();
+
 function Entry(name, score){  
     this.name = name;
     this.score = score;
@@ -93,6 +93,7 @@ function guess(){
 
 function saveLocalStorage(highscore){
     
+    localStorage.setItem("bool","true");
     localStorage.setItem("pos1", JSON.stringify(highscore[0]));
     localStorage.setItem("pos2", JSON.stringify(highscore[1]));
     localStorage.setItem("pos3", JSON.stringify(highscore[2]));
@@ -105,7 +106,9 @@ function saveLocalStorage(highscore){
 }
 
 function writeHighscore(){
-    
+    if (localStorage.getItem("bool") != "true") {
+        reset();
+    }
     document.getElementById("pos1").innerHTML = JSON.parse(localStorage.getItem("pos1")).score + " " +  JSON.parse(localStorage.getItem("pos1")).name;
     document.getElementById("pos2").innerHTML = JSON.parse(localStorage.getItem("pos2")).score + " " +  JSON.parse(localStorage.getItem("pos2")).name;
     document.getElementById("pos3").innerHTML = JSON.parse(localStorage.getItem("pos3")).score + " " +  JSON.parse(localStorage.getItem("pos3")).name;
@@ -116,7 +119,7 @@ function writeHighscore(){
 function reset(){
     var mArray = new Array();
     for (var i = 0, len = 5; i < len; i++) {
-        mArray[i] = new Entry("gert",9999);
+        mArray[i] = new Entry("Palatine Kleeburg",9999);
     }
     saveLocalStorage(mArray);
 }
