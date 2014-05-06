@@ -1,6 +1,7 @@
 @import url("./default.css");
 
 body {
+    text-align:                 center;
     font-family:                'Open Sans', sans-serif;
     background:                 black;
 }
@@ -10,6 +11,7 @@ body header {
 }
 
 body section {
+    display:                    block;  
     background:                 grey;
     margin:                     20%;
     text-align:                 center;
