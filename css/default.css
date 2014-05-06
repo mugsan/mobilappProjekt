@@ -12,3 +12,6 @@ body section {
     border-radius:              3em;
     padding:                    5%;
 }
+body section article p{
+    display:                    inline;
+}
